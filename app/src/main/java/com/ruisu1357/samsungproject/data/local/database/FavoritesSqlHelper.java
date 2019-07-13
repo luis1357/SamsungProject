@@ -30,7 +30,7 @@ public class FavoritesSqlHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(String.format(Locale.US, "CREATE TABLE $s(%s TEXT PRIMARY_KEY, %s TEXT", TABLE_NAME, COL_ID,COL_URL));
+        db.execSQL(String.format(Locale.US, "CREATE TABLE %s(%s TEXT PRIMARY_KEY, %s TEXT)", TABLE_NAME, COL_ID,COL_URL));
     }
 
     @Override
@@ -49,6 +49,8 @@ public class FavoritesSqlHelper extends SQLiteOpenHelper {
                 returnList.add(cursor.getString(cursor.getColumnIndex(COL_URL)));
             } while (cursor.moveToNext());
         }
+
+        cursor.close();
 
         return returnList;
     }
